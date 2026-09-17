@@ -425,25 +425,26 @@ function Library:MakeNotification(NotificationConfig)
 			Parent = NotificationHolder
 		})
 
-		local NotificationFrame = SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(25, 25, 25), 0, 10), {
+		local NotificationFrame = SetChildren(SetProps(MakeElement("RoundFrame", Color3.fromRGB(10, 24, 16), 0, 10), {
 			Parent = NotificationParent, 
 			Size = UDim2.new(1, 0, 0, 0),
 			Position = UDim2.new(1, -55, 0, 0),
 			BackgroundTransparency = 0,
 			AutomaticSize = Enum.AutomaticSize.Y
 		}), {
-			MakeElement("Stroke", Color3.fromRGB(93, 93, 93), 1.2),
+			MakeElement("Stroke", Color3.fromRGB(57, 255, 106), 1.2),
 			MakeElement("Padding", 12, 12, 12, 12),
 			SetProps(MakeElement("Image", NotificationConfig.Image), {
 				Size = UDim2.new(0, 20, 0, 20),
-				ImageColor3 = Color3.fromRGB(240, 240, 240),
+				ImageColor3 = Color3.fromRGB(57, 255, 106),
 				Name = "Icon"
 			}),
 			SetProps(MakeElement("Label", NotificationConfig.Name, 15), {
 				Size = UDim2.new(1, -30, 0, 20),
 				Position = UDim2.new(0, 30, 0, 0),
 				Font = Enum.Font.FredokaOne,
-				Name = "Title"
+				Name = "Title",
+				TextColor3 = Color3.fromRGB(57, 255, 106)
 			}),
 			SetProps(MakeElement("Label", NotificationConfig.Content, 14), {
 				Size = UDim2.new(1, 0, 0, 0),
@@ -451,7 +452,7 @@ function Library:MakeNotification(NotificationConfig)
 				Font = Enum.Font.FredokaOne,
 				Name = "Content",
 				AutomaticSize = Enum.AutomaticSize.Y,
-				TextColor3 = Color3.fromRGB(200, 200, 200),
+				TextColor3 = Color3.fromRGB(255, 255, 255),
 				TextWrapped = true
 			})
 		})
@@ -654,7 +655,7 @@ local data = rankData[rank] or {color = "rgb(174, 255, 1)", icon = ""}
 
 local fullText = "<font color='rgb(57, 255, 106)'>BRUTON HUB</font> " ..
                  "<font color='rgb(255, 255, 255)'>「 BrookHaven 」 • </font>" ..
-                 "<font color='rgb(0, 255, 0)'>😎 Summer ☀️</font> " ..
+                 "<font color='rgb(255, 0, 0)'>Brookhaven RP</font> " ..
                  "<font color='rgb(255, 255, 255)'> • </font>" ..
                  string.format("<font color='%s'>%s %s </font>", data.color, data.icon, rank)
 			
@@ -830,6 +831,8 @@ MakeResizable(ResizeBtn, MainWindow, Vector2.new(400, 250), Vector2.new(1200, 80
 			Size = UDim2.new(1, 0, 0, 30),
 			Parent = TabHolder
 		}), {
+			MakeElement("Stroke", Color3.fromRGB(57, 255, 106), 1),
+			MakeElement("Corner", 0, 6),
 			AddThemeObject(SetProps(MakeElement("Image", TabConfig.Icon), {
 				AnchorPoint = Vector2.new(0, 0.5),
 				Size = UDim2.new(0, 18, 0, 18),
@@ -1826,11 +1829,11 @@ MakeResizable(ResizeBtn, MainWindow, Vector2.new(400, 250), Vector2.new(1200, 80
 end   
 
 local Configs_HUB = {
-  Cor_Hub = Color3.fromRGB(15, 15, 15),
-  Cor_Options = Color3.fromRGB(15, 15, 15),
-  Cor_Stroke = Color3.fromRGB(60, 60, 60),
-  Cor_Text = Color3.fromRGB(240, 240, 240),
-  Cor_DarkText = Color3.fromRGB(140, 140, 140),
+  Cor_Hub = Color3.fromRGB(10, 24, 16),
+  Cor_Options = Color3.fromRGB(10, 24, 16),
+  Cor_Stroke = Color3.fromRGB(57, 255, 106),
+  Cor_Text = Color3.fromRGB(255, 255, 255),
+  Cor_DarkText = Color3.fromRGB(255, 255, 255),
   Corner_Radius = UDim.new(0, 4),
   Text_Font = Library.Font
 }
