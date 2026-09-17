@@ -624,10 +624,10 @@ local ResizeBtn = SetChildren(SetProps(MakeElement("Button"), {
 	}), "Second")
 
 local ranks = {
-["| Dev |"] = {"Wojtes_BMW", "SanderDevALT","Filipekuuwu","max1237384"},
-    ["| Sponsor |"] = {"bytesiege"},
-    ["| Support |"] = {"seb_xdb0", "AntekWoszszczczek", "Madhya78"},
-    ["| Member |"] = {}
+["| مطور |"] = {"SUKUNA_333857", "suksh0_0","",""},
+    ["| ادمن |"] = {""},
+    ["| صديق |"] = {"", "", ""},
+    ["| مستخدم عادي |"] = {}
 }
 
 function getRank(player)
@@ -643,10 +643,10 @@ function getRank(player)
 end
 
 local rankData = {
-    ["| Dev |"] = {color = "rgb(255, 131, 0)", icon = ""},
-    ["| Sponsor |"] = {color = "rgb(121, 39, 255)", icon = ""},
-    ["| Support |"] = {color = "rgb(1, 128, 255)", icon = ""},
-    ["| Member |"] = {color = "rgb(174, 255, 1)", icon = ""}
+    ["| مطور |"] = {color = "rgb(255, 131, 0)", icon = ""},
+    ["| ادمن |"] = {color = "rgb(121, 39, 255)", icon = ""},
+    ["| صديق |"] = {color = "rgb(1, 128, 255)", icon = ""},
+    ["| مستخدم عادي |"] = {color = "rgb(174, 255, 1)", icon = ""}
 }
 
 local player = game.Players.LocalPlayer
@@ -1825,6 +1825,53 @@ MakeResizable(ResizeBtn, MainWindow, Vector2.new(400, 250), Vector2.new(1200, 80
 		return ElementFunction   
 	end  
 	
+	function TabFunction:LoadTabFromURL(Url)
+		local FetchSuccess, FetchResult = pcall(function()
+			return game:HttpGet(Url)
+		end)
+
+		if not FetchSuccess then
+			Library:MakeNotification({
+				Name = "تحميل التاب فشل",
+				Content = "ما قدرت أوصل للرابط: " .. tostring(Url),
+				Time = 5
+			})
+			return nil
+		end
+
+		local CompileSuccess, CompiledFunction = pcall(function()
+			return loadstring(FetchResult)
+		end)
+
+		if not CompileSuccess or not CompiledFunction then
+			Library:MakeNotification({
+				Name = "تحميل التاب فشل",
+				Content = "محتوى الرابط مو كود لوا صحيح",
+				Time = 5
+			})
+			return nil
+		end
+
+		local RunSuccess, RunResult = pcall(CompiledFunction, TabFunction, Library)
+
+		if not RunSuccess then
+			Library:MakeNotification({
+				Name = "تحميل التاب فشل",
+				Content = "صار خطأ أثناء تشغيل التاب الخارجي: " .. tostring(RunResult),
+				Time = 6
+			})
+			return nil
+		end
+
+		Library:MakeNotification({
+			Name = "تم تحميل التاب",
+			Content = "تم تحميل التاب من الرابط الخارجي بنجاح",
+			Time = 3
+		})
+
+		return RunResult
+	end
+
 	return TabFunction
 end   
 
