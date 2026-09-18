@@ -3,7 +3,7 @@ local Configs_HUB = {
   Cor_Options = Color3.fromRGB(26, 26, 26),
   Cor_Stroke = Color3.fromRGB(240, 240, 240),
   Cor_Text = Color3.fromRGB(240, 240, 240),
-  Cor_DarkText = Color3.fromRGB(240, 240, 240),
+  Cor_DarkText = Color3.fromRGB(150, 150, 150),
   Corner_Radius = UDim.new(0, 12),
   Text_Font = Enum.Font.FredokaOne
 }
@@ -331,24 +331,6 @@ function MakeWindow(Configs)
     Active = true,
     Draggable = true
   })Corner(Menu)
-
-  local BadgeIcon = Create("Frame", Menu, {
-    Size = UDim2.new(0, 44, 0, 44),
-    Position = UDim2.new(0.5, 0, 0, 0),
-    AnchorPoint = Vector2.new(0.5, 0.5),
-    BackgroundColor3 = Configs_HUB.Cor_Hub,
-    ZIndex = 5
-  })Corner(BadgeIcon, {CornerRadius = UDim.new(1, 0)})Stroke(BadgeIcon, {Thickness = 2})
-
-  local BadgeIconLabel = Create("TextLabel", BadgeIcon, {
-    Size = UDim2.new(1, 0, 1, 0),
-    BackgroundTransparency = 1,
-    Text = "\226\152\160",
-    TextScaled = true,
-    Font = Configs_HUB.Text_Font,
-    TextColor3 = Configs_HUB.Cor_Text,
-    ZIndex = 5
-  })
   
   local TopBar = Create("Frame", Menu, {
     BackgroundTransparency = 1,
@@ -627,7 +609,7 @@ function MakeWindow(Configs)
   function MakeTab(Configs)
     local TabName = Configs.Name or "Tab"
     local TabTitle = Configs.TabTitle or false
-    local TabIcon = Configs.Icon or "\226\151\143"
+    local TabIcon = Configs.Icon or "rbxassetid://10709798174"
     
     local Frame = Create("Frame", ScrollBar, {
       Size = UDim2.new(1, 0, 0, 30),
@@ -650,21 +632,20 @@ function MakeWindow(Configs)
       Text = TabName
     })
     
-    local IconLabel = Create("TextLabel", Frame, {
+    local IconLabel = Create("ImageLabel", Frame, {
       Name = "IconLabel",
-      Size = UDim2.new(0, 22, 0, 22),
-      Position = UDim2.new(1, -4, 0.5, 0),
+      Size = UDim2.new(0, 18, 0, 18),
+      Position = UDim2.new(1, -6, 0.5, 0),
       AnchorPoint = Vector2.new(1, 0.5),
       BackgroundTransparency = 1,
-      Font = Configs_HUB.Text_Font,
-      TextColor3 = textcolor,
-      TextScaled = true,
-      Text = TabIcon
+      Image = TabIcon,
+      ImageColor3 = textcolor,
+      ScaleType = Enum.ScaleType.Fit
     })
     
     if firstVisible then
-      Frame.BackgroundColor3 = Configs_HUB.Cor_Options
-      Frame.BackgroundTransparency = 0
+      TextLabel.TextColor3 = Configs_HUB.Cor_Text
+      IconLabel.ImageColor3 = Configs_HUB.Cor_Text
     end
     
     local Container = Create("ScrollingFrame", Containers, {
@@ -699,17 +680,14 @@ function MakeWindow(Configs)
           CreateTween(frame.TextLabel, "TextColor3", Configs_HUB.Cor_DarkText, 0.3, false)
           frame.TextLabel.TextSize = 14
           if frame:FindFirstChild("IconLabel") then
-            CreateTween(frame.IconLabel, "TextColor3", Configs_HUB.Cor_DarkText, 0.3, false)
+            CreateTween(frame.IconLabel, "ImageColor3", Configs_HUB.Cor_DarkText, 0.3, false)
           end
-          CreateTween(frame, "BackgroundTransparency", 1, 0.3, false)
         end
       end
       Container.Visible = true
       CreateTween(TextLabel, "TextColor3", Configs_HUB.Cor_Text, 0.3, false)
       TextLabel.TextSize = 15
-      CreateTween(IconLabel, "TextColor3", Configs_HUB.Cor_Text, 0.3, false)
-      CreateTween(Frame, "BackgroundColor3", Configs_HUB.Cor_Options, 0.3, false)
-      Frame.BackgroundTransparency = 0
+      CreateTween(IconLabel, "ImageColor3", Configs_HUB.Cor_Text, 0.3, false)
     end)
     
     firstVisible = false
