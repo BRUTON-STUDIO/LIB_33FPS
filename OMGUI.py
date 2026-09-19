@@ -741,7 +741,7 @@ local function buildRowWithLabel(rowParent, rowTitle, rowDesc, rowContentSize)
 
 	buildElement("Corner", rowIconOffset, UDim.new(0, 6))
 
-	LabelHolder = createInstance("Frame", rowIconOffset, {
+	local LabelHolder = createInstance("Frame", rowIconOffset, {
 		AutomaticSize = "Y",
 		BackgroundTransparency = 1,
 		Size = rowContentSize,
